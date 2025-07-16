@@ -41,40 +41,43 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
         @Test
         public void testCase01() {
 
-                //step: 1 navigate to youtube
-                //step: 2 assert current url is youtube 
-                //step: 3 click on menu button
-                //step: 4 scroll to about
-                //step: 5 click on about
-                //step: 6 assert about message is visible
-
-
-
 
                 System.out.println("Start TestCase 01: Success");
+                //step: 1 navigate to youtube
                 wrapper.openUrl("https://www.youtube.com");
-
+                System.out.println("Test step: Navigated to Youtube homepage successfully");
+                //step: 2 assert current url is youtube 
                 wrapper.assertCurrentUrl("https://www.youtube.com/");
 
                 WebElement menuButton = driver.findElement(By.xpath("//div[@id='start']//button[@aria-label='Guide']"));
+                //step: 3 click on menu button
                 wrapper.click(menuButton);
 
-                WebElement aboutLink = driver
-                                .findElement(By.xpath("//a[contains(text(), 'About') and contains(@href, 'about')]"));
+                WebElement aboutLink = driver.findElement(By.xpath("//a[contains(text(), 'About') and contains(@href, 'about')]"));
+                //step: 4 scroll to about
                 wrapper.scrollToElement(aboutLink);
-                System.out.println("Test step: Scrolled to element 'About' is successful");
+                
+                //step: 5 click on about
                 wrapper.jsClick(aboutLink);
-                System.out.println("Test step: JavaScript click on element 'About' succesful");
+                System.out.println("Test step: Clicked 'About' option is successful");
+                
 
                 WebElement aboutMessage = wrapper.wait.until(ExpectedConditions.visibilityOfElementLocated(
                                 By.xpath("(//section[@class='ytabout__content']//p)[1]")));
+
+                //check url contains about
+                String currentUrl = driver.getCurrentUrl();
+               softAssert.assertTrue(currentUrl.contains("about"), 
+                                "Test step: Assertion failed: Current URL does not contain 'about'");
+                System.out.println("Test step: Assertion passed: Current URL contains 'about'");
                 
                 if (wrapper.isVisible(aboutMessage)) {
-                        String aboutText = wrapper.getElementText(aboutMessage);
-                        System.out.println("Test step: Message on About page: " + aboutText);
+                    String aboutText = wrapper.getElementText(aboutMessage);
+                    System.out.println("Test step: Message on About page: " + aboutText);
                 } else {
-                        System.out.println("About message is not visible");
+                    System.out.println("About message is not visible");
                 }
+                //step: 6 assert about message is visible
                 softAssert.assertTrue(wrapper.isVisible(aboutMessage),
                                 "Test step: Assertion failed: About message is not visible");
                 softAssert.assertAll();
@@ -98,12 +101,13 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
 
                 System.out.println("Start TestCase 02: Success");
                 wrapper.openUrl("https://www.youtube.com");
-
+                System.out.println("Test step: Navigated to Youtube homepage successfully");
                 WebElement menuButton = driver.findElement(By.xpath("//div[@id='start']//button[@aria-label='Guide']"));
                 wrapper.click(menuButton);
                 Thread.sleep(2000);
 
-                WebElement movieLink = driver.findElement(By.xpath("(//a[contains(@title, 'Movies')])[1]"));
+                WebElement movieLink = wrapper.wait.until(ExpectedConditions.visibilityOfElementLocated(
+                                By.xpath("(//a[contains(@title, 'Movies')])[1]")));
                 wrapper.scrollToElement(movieLink);
                 Thread.sleep(3000);
                 System.out.println("Test step: Scrolled to 'movies' is successful");
@@ -168,13 +172,14 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
 
                 System.out.println("Start TestCase 03: Success");
                 wrapper.openUrl("https://www.youtube.com");
-
+                System.out.println("Test step: Navigated to Youtube homepage successfully");
 
                 WebElement menuButton = driver.findElement(By.xpath("//div[@id='start']//button[@aria-label='Guide']"));
                 wrapper.click(menuButton);
                 Thread.sleep(2000);
 
                 WebElement musicLink = driver.findElement(By.xpath("(//a[contains(@title, 'Music')])[1]"));
+                
                 wrapper.scrollToElement(musicLink);
                 Thread.sleep(2000);
                 System.out.println("Test step: Scrolled to 'Music' is successful");
@@ -240,7 +245,7 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
 
                 System.out.println("Start TestCase 04: Success");
                 wrapper.openUrl("https://www.youtube.com");
-
+                System.out.println("Test step: Navigated to Youtube homepage successfully");
                 WebElement menuButton = driver.findElement(By.xpath("//div[@id='start']//button[@aria-label='Guide']"));
                 wrapper.click(menuButton);
                 Thread.sleep(2000);
@@ -325,6 +330,7 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
                         long totalViews = 0;
 
                         wrapper.openUrl("https://www.youtube.com");
+                        System.out.println("Test step: Navigated to Youtube homepage successfully");
                         Thread.sleep(2000);
 
                         WebElement searchBox = wrapper.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query")));

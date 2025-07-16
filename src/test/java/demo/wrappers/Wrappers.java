@@ -25,12 +25,12 @@ public class Wrappers {
 
     public void openUrl( String url) {
         driver.get(url);
-        System.out.println("Test step: Successfully Navigated to URL: " + url);
     }
 
     public void searchBox(String searchText) {
         try {
-            WebElement searchbox = driver.findElement(By.xpath("//input[@type='text']"));
+            WebElement searchbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='text']")));
+            searchbox.clear();
             searchbox.sendKeys(searchText, Keys.ENTER);
             System.out.println("Test step: Search text '" + searchText + "' searched successfully");
         } catch (Exception e) {
