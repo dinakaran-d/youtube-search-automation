@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.45">
+<file name="C:\Crio project\Interview projects\youtube project\nsmdina-ME_QA_XYOUTUBE_SEARCH\src\test\java\demo\TestCases.java">
+<error line="291" column="41" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+</file>
+<file name="C:\Crio project\Interview projects\youtube project\nsmdina-ME_QA_XYOUTUBE_SEARCH\src\test\java\demo\utils\ExcelDataProvider.java">
+</file>
+<file name="C:\Crio project\Interview projects\youtube project\nsmdina-ME_QA_XYOUTUBE_SEARCH\src\test\java\demo\utils\ExcelReaderUtil.java">
+</file>
+<file name="C:\Crio project\Interview projects\youtube project\nsmdina-ME_QA_XYOUTUBE_SEARCH\src\test\java\demo\wrappers\Wrappers.java">
+</file>
+</checkstyle>

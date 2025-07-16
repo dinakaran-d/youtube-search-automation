@@ -19,11 +19,15 @@ repositories {
 
 dependencies {
 
-    testImplementation 'org.testng:testng:6.9.10'
+    //testImplementation 'org.testng:testng:6.9.10'
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
+    //implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
     implementation 'org.apache.poi:poi-ooxml:4.1.2'
+
+    testImplementation 'org.testng:testng:7.10.2'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
+    implementation 'org.seleniumhq.selenium:selenium-devtools-v125:4.21.0'
 
 }
 
@@ -63,6 +67,7 @@ mainClassName = 'demo.App'
 checkstyle {
     toolVersion = '8.45' // Check for the latest version compatible with your setup
     config = rootProject.resources.text.fromFile('__CRIO__/checkstyle.xml')
+    //configFile = file('config/checkstyle/checkstyle.xml')
     sourceSets = [sourceSets.test]
     ignoreFailures = true
 }
@@ -70,6 +75,7 @@ checkstyle {
 tasks.withType(Checkstyle) {
     reports {
             xml.required = true
+            xml.outputLocation = file("build/reports/checkstyle/test.xml")
             html.required = false
         }
 }

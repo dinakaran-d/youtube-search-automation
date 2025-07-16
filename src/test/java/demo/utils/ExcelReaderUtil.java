@@ -36,7 +36,13 @@ public class ExcelReaderUtil {
             }
 
             workbook.close();
-            System.out.println("Here is the data: "+records.toString());
+            System.out.println("Here is the data: "); // Print the data for verification //+records.toString()
+            for(Object[] row : records) {
+                for(Object cell : row) {
+                    System.out.print(cell + " ");
+                }
+                System.out.println();
+            }
             return records.toArray(new Object[0][]);
 
         } catch (Exception e) {
