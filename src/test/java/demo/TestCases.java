@@ -62,8 +62,8 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
                 System.out.println("Test step: Clicked 'About' option is successful");
                 
 
-                WebElement aboutMessage = wrapper.wait.until(ExpectedConditions.visibilityOfElementLocated(
-                                By.xpath("(//section[@class='ytabout__content']//p)[1]")));
+                                      //
+                                /// (//section[@class='ytabout__content']//p)[1]
 
                 //check url contains about
                 String currentUrl = driver.getCurrentUrl();
@@ -71,8 +71,12 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
                                 "Test step: Assertion failed: Current URL does not contain 'about'");
                 System.out.println("Test step: Assertion passed: Current URL contains 'about'");
                 
+                WebElement aboutMessage = wrapper.wait.until(ExpectedConditions.visibilityOfElementLocated(
+                                By.xpath("//main[@id='content']//section[contains(@class, 'ytabout__content')]")));
+          
+
+                String aboutText = aboutMessage.getText();
                 if (wrapper.isVisible(aboutMessage)) {
-                    String aboutText = wrapper.getElementText(aboutMessage);
                     System.out.println("Test step: Message on About page: " + aboutText);
                 } else {
                     System.out.println("About message is not visible");
@@ -181,7 +185,7 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
                 WebElement musicLink = driver.findElement(By.xpath("(//a[contains(@title, 'Music')])[1]"));
                 
                 wrapper.scrollToElement(musicLink);
-                Thread.sleep(2000);
+               
                 System.out.println("Test step: Scrolled to 'Music' is successful");
                 wrapper.jsClick(musicLink);
                 Thread.sleep(2000);
@@ -276,14 +280,14 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
 
                         for (int i = 0; i < 3 && i < newsCards.size(); i++) {
                                 WebElement newsCard = newsCards.get(i);
-                                Thread.sleep(3000);
+                                
                                 WebElement newsTitleElement = newsCard.findElement(
                                                 By.xpath(".//span[@class='style-scope ytd-post-renderer']"));
-                                Thread.sleep(3000);
+                        
                                 String newsTitle = newsTitleElement.getText();
 
                                 WebElement newsBodyElement = newsCard.findElement(By.xpath(".//div[@id='post-text']"));
-                                Thread.sleep(3000);
+                                
                                 String newsBody = newsBodyElement.getText();
 
                                 WebElement likeCountElement = newsCard
@@ -331,17 +335,17 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
 
                         wrapper.openUrl("https://www.youtube.com");
                         System.out.println("Test step: Navigated to Youtube homepage successfully");
-                        Thread.sleep(2000);
+                        
 
                         WebElement searchBox = wrapper.wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query")));
                         wrapper.searchBox(searchTerm);
-                        Thread.sleep(2000);
+                        
 
                        
                         while (totalViews < 100000000) {
 
                                 ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1000)");
-                                Thread.sleep(2000);
+                                
 
                                 List<WebElement> viewElements = driver
                                                 .findElements(By.xpath("//*[@id=\"metadata-line\"]/span[1]"));
