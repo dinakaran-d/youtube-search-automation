@@ -35,7 +35,7 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
 
         /*
          * Do not change the provided methods unless necessary, they will help in
-         * automation and assessment
+         * automation and assessment of your code.
          */
 
         @Test
@@ -397,7 +397,7 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
         }
 
         @AfterTest
-        public void endTest() {
+        public void endTest() { 
                 driver.close();
                 driver.quit();
 
