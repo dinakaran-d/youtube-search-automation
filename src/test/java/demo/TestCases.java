@@ -62,9 +62,6 @@ public class TestCases extends ExcelDataProvider { // Lets us read the data
                 System.out.println("Test step: Clicked 'About' option is successful");
                 
 
-                                      //
-                                /// (//section[@class='ytabout__content']//p)[1]
-
                 //check url contains about
                 String currentUrl = driver.getCurrentUrl();
                softAssert.assertTrue(currentUrl.contains("about"), 
