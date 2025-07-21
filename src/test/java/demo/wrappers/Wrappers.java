@@ -83,13 +83,12 @@ public class Wrappers {
         }
     }
 
-    public void arrowNavigation(WebElement element, int times) throws InterruptedException {
-        for(int i=0; i<times; i++) {
+    public void arrowNavigation(WebElement element) throws InterruptedException {
+        while(isVisible(element)) {
            try {
-            if(isVisible(element)) {
                 jsClick(element);
                 Thread.sleep(2000);
-            }
+            
         } catch (Exception e) {
             System.out.println("Test step: Arrow is not visible, cannot perform navigation");
                 break;
